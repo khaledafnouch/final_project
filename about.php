@@ -76,7 +76,7 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Acceuille<i class="fa fa-chevron-right"></i></a></span> <span>About us <i class="fa fa-chevron-right"></i></span></p>
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Acceuille<i class="fa fa-chevron-right"></i></a></span> <span>About us <i class="fa fa-chevron-right"></i></span></p>
                     <h1 class="mb-0 bread">à propos de nous</h1>
                 </div>
             </div>

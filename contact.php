@@ -1,7 +1,34 @@
+<?php
+require 'conn.php';
+if (isset($_POST['envoyer'])){
+    $name = $_POST['name'];
+    $email =$_POST['email'];
+    $subject =$_POST['subject'];
+    $message =$_POST['message'];
+    
+    
+    
+      
+      $query = "insert into contact (name, email, subject, message) values ('$name', '$email', '$subject', '$message')";
+      
+      $resault = mysqli_query($db ,$query);
+      print_r ($resault);
+      if(!$resault){
+        die('impossible d insérer data').mysqli_error($db);
+        
+      }
+    }
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><?php echo _('Hôpital Regionale de Bengardane');   ?> </title>
+    <title>Hôpital Regionale de Bengardane</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -74,7 +101,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="fa fa-chevron-right"></i></a></span> <span>
 Nous contacter <i class="fa fa-chevron-right"></i></span></p>
             <h1 class="mb-0 bread">
 Nous contacter</h1>
@@ -117,7 +144,7 @@ Nous contacter</h1>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<input type="submit" value="envoyer Message" class="btn btn-primary">
+														<input type="submit" name="envoyer" value="envoyer Message" class="btn btn-primary">
 														<div class="submitting"></div>
 													</div>
 												</div>

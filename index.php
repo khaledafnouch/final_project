@@ -1,5 +1,27 @@
 <?php
-  require 'localisation.php';
+include 'conn.php';
+
+
+if (isset($_POST['submit'])){
+$name = $_POST['name'];
+$phone =$_POST['phone'];
+$services =$_POST['services'];
+$doctors =$_POST['docteur'];
+
+
+
+  
+  $query = "insert into users (name, phone, service, doctor) values ('$name', '$phone', '$services', '$doctors')";
+  
+  $resault = mysqli_query($db ,$query);
+  print_r ($resault);
+  if(!$resault){
+    die('impossible d insérer data').mysqli_error($db);
+    
+  }
+}
+
+
 
 
 
@@ -9,7 +31,7 @@
 <html lang="en">
 
 <head>
-    <title><?php echo _('Hôpital Regionale de Bengardane');   ?> </title>
+    <title>Hôpital Regionale de Bengardane </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -36,7 +58,7 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-md-3 mb-md-0 mb-4 d-flex align-items-center">
-                    <a class="navbar-brand" href="index.php"><?php  echo _('Hôpital Regionale');  ?></a>
+                    <a class="navbar-brand" href="index.php">Hôpital Regionale</a>
                 </div>
                 <div class="col-md-7">
                     <div class="row">
@@ -64,23 +86,28 @@
 	        <span class="fa fa-bars"></span> Menu
 	      </button>
             <div class="order-lg-last">
-                <a href="#appointment" class="btn btn-primary"><?php echo _('Prendre rendez-vous');?></a>
+                <a href="#ftco-appointment" class="btn btn-primary">Prendre rendez-vous</a>
             </div>
             <div class="order-lg-last">
-                <a href="" class="btn"  ><img src="images/fr.png" alt="" srcset="" style="width: 50px; height: 35px;"> </a>
+<span>
+					    <div class="translate" id="google_translate_element"></div>
+
+                            <script type="text/javascript">
+                                function googleTranslateElementInit() {  new google.translate.TranslateElement({pageLanguage: 'fr'}, 'google_translate_element');}
+                            </script>
+                            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+					</span>
             </div>
-            <div class="order-lg-last">
-                <a href="" class="btn"  ><img src="images/tn.png" alt="" srcset="" style="width: 50px; height: 35px;"> </a>
-            </div>
+           
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a href="index.php" class="nav-link"><?php echo _('Acceuille'); ?></a></li>
-                    <li class="nav-item"><a href="about.php" class="nav-link"><?php echo _('cibles'); ?></a></li>
+                    <li class="nav-item active"><a href="index.php" class="nav-link">Acceuille</a></li>
+                    <li class="nav-item"><a href="about.php" class="nav-link">cibles</a></li>
                   
-                    <li class="nav-item"><a href="services.php" class="nav-link"><?php echo _('Services')   ?></a></li>
+                    <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
                     
-                    <li class="nav-item"><a href="blog.php" class="nav-link"><?php echo _('produits')  ?></a></li>
-                    <li class="nav-item"><a href="contact.php" class="nav-link"><?php echo _('Contact');  ?></a></li>
+                    <li class="nav-item"><a href="blog.php" class="nav-link">produits</a></li>
+                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -120,7 +147,7 @@
         </div>
     </div>
 
-    <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb">
+    <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb" id="ftco-appointment">
         <div class="overlay"></div>
         <div class="container">
             <div class="row d-md-flex justify-content-center">
@@ -148,12 +175,12 @@
                                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                                     <select name="services" id="" class="form-control">
 			                      	<option value="">Sélectionnez les services</option>
-			                        <option value="">Manipulation vertébrale</option>
-			                        <option value="">Électrothérapie</option>
-			                        <option value="">Manuel Lymphatique</option>
-			                        <option value="">Acupuncture médicale</option>
-			                        <option value="">Exercice thérapeutique</option>
-			                        <option value="">Mobilisation conjointe</option>
+			                        <option value="Manipulation">Manipulation vertébrale</option>
+			                        <option value="Electrotherapy">Électrothérapie</option>
+			                        <option value="lymphatique ">Manuel Lymphatique</option>
+			                        <option value="acupuncture ">Acupuncture médicale</option>
+			                        <option value="thérapeutique">Exercice thérapeutique</option>
+			                        <option value="Mobilisation">Mobilisation conjointe</option>
 			                      </select>
                                                 </div>
                                             </div>
@@ -166,34 +193,27 @@
                                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                                     <select name="docteur" id="" class="form-control">
 			                      	<option value="">Sélectionnez docteur</option>
-			                        <option value="">John Doe</option>
-			                        <option value="">William Smith</option>
-			                        <option value="">Danny Green</option>
-			                        <option value="">Jason Thompson</option>
+			                        <option value="john">John Doe</option>
+			                        <option value="William">William Smith</option>
+			                        <option value="Danny">Danny Green</option>
+			                        <option value="Jason">Jason Thompson</option>
 			                      </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-wrap">
-                                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                <input type="text" class="form-control appointment_date" placeholder="Date">
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="input-wrap">
                                                 <div class="icon"><span class="fa fa-clock-o"></span></div>
-                                                <input type="text" class="form-control appointment_time" placeholder="Time">
+                                                <input type="datetime" name="time" class="form-control appointment_date" placeholder="Time">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="submit" value="envoyer message" class="btn btn-secondary py-3 px-4">
+                                            <input type="submit" name="submit" value="envoyer message" class="btn btn-secondary py-3 px-4">
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +249,7 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center pb-5 mb-3">
-                <div class="col-md-7 heading-section text-center ftco-animate">
+                <div class="col-md-7 heading-section detext-center ftco-animate">
                     <span class="subheading">Nous offrons des services</span>
                     <h2>Nos avantages</h2>
                 </div>
@@ -243,7 +263,7 @@
                         <div class="media-body pl-3">
                             <h3 class="heading">La prévention</h3>
                             <p>l'hôpital est le lieu essentiel de détection des problèmes de santé, en particulier par le biais des urgences.</p>
-                            <p><a href="#" class="btn-custom">Lire la suite</a></p>
+                            <p><a href="services.php" class="btn-custom">Lire la suite</a></p>
                         </div>
                     </div>
                     <div class="d-block d-flex">
@@ -253,7 +273,7 @@
                         <div class="media-body pl-3">
                             <h3 class="heading">La qualité des soins</h3>
                             <p> l'hôpital met en place un système permettant d'assurer la qualité des dispositifs médicaux répondant à des conditions définies par voie réglementaire..</p>
-                            <p><a href="#" class="btn-custom">lire la suite</a></p>
+                            <p><a href="services.php" class="btn-custom">lire la suite</a></p>
                         </div>
                     </div>
 
@@ -266,7 +286,7 @@
                         <div class="media-body pl-3">
                             <h3 class="heading">Electrotherapy</h3>
                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-                            <p><a href="#" class="btn-custom">Read more</a></p>
+                            <p><a href="services.php" class="btn-custom">Read more</a></p>
                         </div>
                     </div>
                     <div class="d-block d-flex">
@@ -276,7 +296,7 @@
                         <div class="media-body pl-3">
                             <h3 class="heading">cardiologie</h3>
                             <p>est une branche de la médecine qui traite des troubles du cœur ainsi que de certaines parties du système circulatoire</p>
-                            <p><a href="#" class="btn-custom">lire la suite</a></p>
+                            <p><a href="services.php" class="btn-custom">lire la suite</a></p>
                         </div>
                     </div>
                 </div>
@@ -289,7 +309,7 @@
                         <div class="media-body pl-3">
                             <h3 class="heading">radiologie</h3>
                             <p> la radiologie conventionnelle, la mammographie, la tomodensitométrie.. et l'échographie</p>
-                            <p><a href="#" class="btn-custom">lire la suite</a></p>
+                            <p><a href="services.php" class="btn-custom">lire la suite</a></p>
                         </div>
                     </div>
                     <div class="d-block d-flex">
@@ -299,7 +319,7 @@
                         <div class="media-body pl-3">
                             <h3 class="heading">médecine générale</h3>
                             <p>Les médecins généralistes sont chargés de dispenser des soins globaux et continus à tous ceux qui le souhaitent indépendamment de leur âge, de leur sexe et de leur maladie.</p>
-                            <p><a href="#" class="btn-custom">lire la suite</a></p>
+                            <p><a href="services.php" class="btn-custom">lire la suite</a></p>
                         </div>
                     </div>
                 </div>
@@ -378,7 +398,7 @@ rubriques principales, les sous rubriques et les liens qui les unissent</p>
                         </a>
                         <div class="desc w-100 px-4 text-center pt-5 mt-5">
                             <div class="text w-100 mb-3 mt-4">
-                                <h2><a href="work-single.html">radiologie</a></h2>
+                                <h2><a href="#">radiologie</a></h2>
                             </div>
                         </div>
                     </div>
@@ -390,7 +410,7 @@ rubriques principales, les sous rubriques et les liens qui les unissent</p>
                         </a>
                         <div class="desc w-100 px-4 text-center pt-5 mt-5">
                             <div class="text w-100 mb-3 mt-4">
-                                <h2><a href="work-single.html">Cardiologie</a></h2>
+                                <h2><a href="#">Cardiologie</a></h2>
                             </div>
                         </div>
                     </div>
@@ -463,7 +483,7 @@ rubriques principales, les sous rubriques et les liens qui les unissent</p>
                         </a>
                         <div class="desc w-100 px-4 text-center pt-5 mt-5">
                             <div class="text w-100 mb-3 mt-4">
-                                <h2><a href="work-single.html">Centre d'Endoscopie Digestive</a></h2>
+                                <h2><a href="#">Centre d'Endoscopie Digestive</a></h2>
                             </div>
                         </div>
                     </div>

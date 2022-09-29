@@ -1,3 +1,11 @@
+<?php 
+require 'conn.php';
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -74,7 +82,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Acceuille <i class="fa fa-chevron-right"></i></a></span> <span>Blog <i class="fa fa-chevron-right"></i></span></p>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Acceuille <i class="fa fa-chevron-right"></i></a></span> <span>Blog <i class="fa fa-chevron-right"></i></span></p>
             <h1 class="mb-0 bread">produits</h1>
           </div>
         </div>
@@ -82,122 +90,49 @@
     </section>
 		
 		<section class="ftco-section">
-      <div class="container">
-        <div class="row">
+    <?php
+        $sql = "select * from produits ";
+        $res = $db->query($sql);
+        
+        if ($res->num_rows > 0)
+        {
+        
+        foreach($res as $row){
+        
+            $id_produit = $row['id'];
+            $img_produit =$row['image'];
+            $name_produit = $row['name'];
+            $date_produit = $row['date'];
+        
+        ?>
+      <div class="container my-produit ">
+        
+        <div class="row ">
           <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/img_1.jpeg');">
+            <div class="blog-entry ">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('<?php echo $img_produit ?>');">
               </a>
               <div class="text mt-3">
               	<div class="posted mb-3 d-flex">
               		
               		<div class="desc pl-3">
-              			<span>nom de produit</span>
-              			<span>24 February 2020</span>
-              		</div>
-              	</div>
-                <  <p><a href="#" class="btn btn-primary">ajouter au panier</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/img_2.jpeg');">
-              </a>
-              <div class="text mt-3">
-              	<div class="posted mb-3 d-flex">
-              		
-              		<div class="desc pl-3">
-              			<span>nom de produit</span>
-              			<span>24 February 2020</span>
-              		</div>
-              	</div>
-                <p><a href="#" class="btn btn-primary">ajouter au panier</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/img_3.webp');">
-              </a>
-              <div class="text mt-3">
-              	<div class="posted mb-3 d-flex">
-              		
-              		<div class="desc pl-3">
-              			<span>nom de produit</span>
-              			<span>24 February 2020</span>
-              		</div>
-              	</div>
-                  <p><a href="#" class="btn btn-primary">ajouter au panier</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/img_5.jpg');">
-              </a>
-              <div class="text mt-3">
-              	<div class="posted mb-3 d-flex">
-              		
-              		<div class="desc pl-3">
-              			<span>nom de produit</span>
-              			<span>24 February 2020</span>
-              		</div>
-              	</div>
-               <p><a href="#" class="btn btn-primary">ajouter au panier</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/img_4.jpg');">
-              </a>
-              <div class="text mt-3">
-              	<div class="posted mb-3 d-flex">
-              		
-              		<div class="desc pl-3">
-              			<span>nom de produit</span>
-              			<span>24 February 2020</span>
+              			<span><?php echo $name_produit ?></span>
+              			<span><?php echo $date_produit ?></span>
               		</div>
               	</div>
                  <p><a href="#" class="btn btn-primary">ajouter au panier</a></p>
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/img_2.jpeg');">
-              </a>
-              <div class="text mt-3">
-              	<div class="posted mb-3 d-flex">
-              		
-              		<div class="desc pl-3">
-              			<span>nom de produit</span>
-              			<span>24 February 2020</span>
-              		</div>
-              	</div>
-                <p><a href="#" class="btn btn-primary">ajouter au panier</a></p>
-              </div>
-            </div>
-          </div>
+          
         </div>
-        <div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      
       </div>
+      <?php 
+        }
+        
+      }
+      ?>
     </section>
 
     <footer class="footer ftco-section ftco-no-pt">
